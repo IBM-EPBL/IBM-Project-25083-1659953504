@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+<title>Sign In</title>
+{% endblock %}
+
+{% block body %}
+
+
+
+<div class="card mx-auto mt-4" style="width: 32rem;">
+    <h5 class="card-header">Sign In</h5>
+    <div class="card-body">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleFormControlInput1" >
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">Sign In</button>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
