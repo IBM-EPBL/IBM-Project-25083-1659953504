@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row mt-5">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="row">
+          {% for news in news_articles %}
+          <div class="col-md-4 mb-5">
+            <div class="card" style="width: 18rem">
+              <img src="{{ news.urlToImage }}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">{{ news.title }}</h5>
+                <p class="card-text">{{ news.description }}</p>
+                <a href="{{ news.url }}" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <!-- Bootstrap Bundle with Popper -->
+    
+    {% endblock %}
