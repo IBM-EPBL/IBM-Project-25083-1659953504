@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<head>
+  <link rel="stylesheet" href="{{url_for('static',filename='news.css')}}">
+</head>
+<div class="container d-flex justify-center">
+  <div class="row mt-5 ">
+    <div class="col-md-12 ">
+      <div class="row ">
+        {% for news in news_articles %}
+        <div class="card col-md-5 col-lg-4 mb-5 p-2  bg-dark text-white rounded">
+          <img class="card-img-top" src="{{ news.image_url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ news.title }}</h5>
+            <p class="card-text">{{ news.description }}</p>
+            <a href="{{ news.link }}" class="btn btn-primary mt-1 p-2">Read More</a>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Bootstrap Bundle with Popper -->
+
+{% endblock %}
