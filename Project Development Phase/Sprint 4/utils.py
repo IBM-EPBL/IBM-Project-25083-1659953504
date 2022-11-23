@@ -5,14 +5,14 @@ NEWS_API_KEY = config('NEWS_API_KEY')
 
 
 def get_latest_news():
-    news_data = requests.get(f'https://newsdata.io/api/1/news?apikey={NEWS_API_KEY}&country=in&language=en').json()
-    return news_data['results']
+    news_data = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&apiKey={NEWS_API_KEY}').json()
+    return news_data['articles']
 
 def getCategory(category):
-    news_data = requests.get(f'https://newsdata.io/api/1/news?apikey={NEWS_API_KEY}&category={category}&country=in&language=en').json()
-    return news_data['results']
+    news_data = requests.get(f'https://newsapi.org/v2/country=us&apiKey={NEWS_API_KEY}&category={category}').json()
+    return news_data['articles']
 
 
 def searchNews(text):
-    news_data = requests.get(f'https://newsdata.io/api/1/news?apikey={NEWS_API_KEY}&q={text}&country=in&language=en').json()
-    return news_data['results']
+    news_data = requests.get(f'https://newsapi.org/v2/q={text}&apiKey={NEWS_API_KEY}').json()
+    return news_data['articles']

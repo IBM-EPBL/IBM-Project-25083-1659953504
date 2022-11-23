@@ -33,7 +33,7 @@ def signupusers():
 
 @app.route('/addNews',methods=['POST'])
 def addNews():
-    value = addNewsDb(json.loads(request.get_data())['id'],json.loads(request.get_data())['newsLink'],json.loads(request.get_data())['newsTitle'],json.loads(request.get_data())['newsImage'])
+    value = addNewsDb(json.loads(request.get_data())['id'],json.loads(request.get_data())['newsLink'],json.loads(request.get_data())['newsTitle'],json.loads(request.get_data())['newsImage'],json.loads(request.get_data())['newsDescrp'])
     return value
 
 @app.route('/news')
@@ -52,10 +52,6 @@ def newsCategory(category):
 @app.route('/savedNews/<id>', methods=['GET', 'POST'])
 def showSavedNews(id):
     news_articles = get_savedNews(id)
-    # return news_articles
-    # news_articles = get_savedNews()
-    print(news_articles)
-    # return news_articles
     return render_template("savedNews.html", news_articles=news_articles)
 
 

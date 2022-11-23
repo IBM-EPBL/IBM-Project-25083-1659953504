@@ -14,7 +14,7 @@ def signinusersdb(email,password):
         key = ibm_db.result(stmt, 1)
         randomid = ibm_db.result(stmt, 2)
         dname = ibm_db.result(stmt,3)
-        print(value)
+        # print(value)
         r = rehashing(value,password,key,randomid,dname)
         # print(r)
         return r
@@ -39,19 +39,17 @@ def get_savedNews(id):
         value =  ibm_db.fetch_assoc(stmt)
         article = []
         while value != False:
-            dict = {'image_url':value["IMAGE"] , 'title': value["TITLE"] , 'link': value["LINK"]}
+            dict = {'image_url':value["IMAGE"] , 'title': value["TITLE"] , 'link': value["LINK"],'description': value["DESCRP"]}
             article.append(dict)
             value = ibm_db.fetch_assoc(stmt)
-        # arrArticle = [article]
-        # print(arrArticle)
         return article
     return '{"result":"Not Found"}'
 
 
-def addNewsDb(id,link,title,image):
+def addNewsDb(id,link,title,image , descrp):
     stmt = ibm_db.exec_immediate(conn, "select * from news where LINK='"+link+"';")
     if ibm_db.fetch_row(stmt)== False:
-        stmt2 = "insert into news (USERID, TITLE, IMAGE, LINK) values ('"+id+"','"+title+"','"+image +"','"+link+"');"
+        stmt2 = "insert into news (USERID, TITLE, IMAGE, LINK ,DESCRP ) values ('"+id+"','"+title+"','"+image +"','"+link+"' , '"+descrp+"');"
         if ibm_db.exec_immediate(conn, stmt2):
              return '{"result":"Done"}'
         return '{"result":"Already Found"}'
