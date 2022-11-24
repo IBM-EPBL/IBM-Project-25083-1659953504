@@ -34,16 +34,17 @@ def signupusersdb(name,email,password):
 
 def get_savedNews(id):
     stmt = ibm_db.exec_immediate(conn, "select * from news where USERID='"+id+"';")
+    article = []
     if ibm_db.fetch_row(stmt)== True:
         # print(ibm_db.fetch_assoc(stmt))
         value =  ibm_db.fetch_assoc(stmt)
-        article = []
+       
         while value != False:
             dict = {'image_url':value["IMAGE"] , 'title': value["TITLE"] , 'link': value["LINK"],'description': value["DESCRP"]}
             article.append(dict)
             value = ibm_db.fetch_assoc(stmt)
         return article
-    return '{"result":"Not Found"}'
+    return article
 
 
 def addNewsDb(id,link,title,image , descrp):
