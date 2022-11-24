@@ -9,10 +9,10 @@ def get_latest_news():
     return news_data['articles']
 
 def getCategory(category):
-    news_data = requests.get(f'https://newsapi.org/v2/country=us&apiKey={NEWS_API_KEY}&category={category}').json()
+    news_data = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&category={category}&apiKey={NEWS_API_KEY}').json()
     return news_data['articles']
 
 
 def searchNews(text):
-    news_data = requests.get(f'https://newsapi.org/v2/q={text}&apiKey={NEWS_API_KEY}').json()
+    news_data = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&q={text}&apiKey={NEWS_API_KEY}').json()
     return news_data['articles']
