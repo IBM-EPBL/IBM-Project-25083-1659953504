@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: newstracker
+  namespace: default
+spec:
+  selector:
+    app: newstracker
+  ports:
+  - port: 5000
+  type: NodePort 

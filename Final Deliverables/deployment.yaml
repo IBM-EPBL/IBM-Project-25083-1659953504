@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newstracker
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: newstracker
+      version: 1.0.0
+  template:
+    metadata:
+      labels:
+        app: newstracker
+        version: 1.0.0
+    spec:
+      containers:
+        - name: newstracker
+          image: docker.io/nachiappan15/newstracker
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000

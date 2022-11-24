@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container d-flex justify-center">
+  <div class="row mt-5 ">
+    <div class="col-md-12 ">
+      <div class="row ">
+        {% for news in news_articles %}
+        <div class="card col-md-5 col-lg-4 mb-5 p-2  bg-dark text-white rounded">
+          <img class="card-img-top" src="{{ news.urlToImage }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ news.title }}</h5>
+            <p class="card-text">{{ news.description }}</p>
+            <a href="{{ news.url }}" class="btn btn-primary mt-1 p-2">Read More</a>
+            <button class="btn btn-secondary mt-1 p-2" onclick="saveArticle(this)">Save Article</button>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- sweet alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+  const saveArticle = (e) => {
+    var uid = localStorage.getItem("NTid")
+    var parent = e.parentElement
+    var link = parent.childNodes[5].href
+    var title = parent.childNodes[1].innerHTML
+    var image_url = parent.parentElement.childNodes[1].src
+    var descrp = parent.childNodes[3].innerHTML
+    // console.log(descrp);
+    fetchres = fetch('/addNews', {
+      method: 'POST',
+      body: JSON.stringify({ id: uid, newsLink: link, newsTitle: title, newsImage: image_url , newsDescrp:descrp }),
+      contentType: "application/json"
+    })
+    fetchres.then(res => { return res.json() })
+      .then(
+        d => {
+          console.log(d)
+          if (d.result == "Done") { swal("Successful", "News Saved", "success"); }
+          else if (d.result == "Already Found") { swal("Warning", "Already Saved", "warning"); }
+        })
+
+  }
+</script>
+
+<!-- Bootstrap Bundle with Popper -->
+
+{% endblock %}
