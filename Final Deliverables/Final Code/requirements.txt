@@ -1,0 +1,5 @@
+flask
+ibm_db
+python-decouple
+bcrypt
+requests
