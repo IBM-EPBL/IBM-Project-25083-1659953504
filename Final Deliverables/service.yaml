@@ -5,7 +5,11 @@ metadata:
   namespace: default
 spec:
   selector:
+<<<<<<< HEAD
     app: new
+=======
+    app: newstracker
+>>>>>>> 6f9403f4e2b014d52858a4b5b28333d4edfdf5f7
   ports:
   - port: 5000
   type: NodePort 
